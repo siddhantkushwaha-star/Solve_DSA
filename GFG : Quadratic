@@ -1,0 +1,54 @@
+GFG : return root of quadratic equation 
+
+Java Operators(Arithmetic) | Set 1
+Difficulty: BasicAccuracy: 29.0%Submissions: 15K+Points: 1
+Given three numbers A,B and C. Find roots of quadratic equation Ax2 + Bx + C = 0. (A not equal to  0)
+ 
+
+Example 1:
+
+Input: A = 2, B = 3, C = 1
+Output: -0.5, -1
+Explanation: Roots of the equation
+2x2+3x+1=0 are -0.5 and -1.
+
+Example 2:
+
+Input: A = 2, B = 3, C = 4
+Output: -1
+Explanation: Roots of 2x2 + 3x + 4 = 0
+are not real.
+ 
+
+Your Task:
+You don't need to read or print anyhting. Your task is to complete the function FindRoots() which takes A, B and C as input parameters and returns a list of roots of the given equation in ascending order. If roots are not real numbers then return a list containing -1.
+ 
+
+Expected Time Complexity: O(1)
+Expected Space Complexity: O(1)
+
+
+
+
+class Solution
+{
+    public double[]  FindRoots(int A, int B, int C)
+    {
+        // code here
+         double discriminant = B * B - 4 * A * C;
+
+        // If discriminant is negative, no real roots exist
+        if (discriminant < 0) {
+            return new double[]{-1};
+        }
+
+        // Compute roots using the quadratic formula
+        double root1 = (-B + Math.sqrt(discriminant)) / (2.0 * A);
+        double root2 = (-B - Math.sqrt(discriminant)) / (2.0 * A);
+
+        // Return roots in ascending order
+        return new double[]{Math.min(root1, root2), Math.max(root1, root2)};
+    }
+}
+
+
