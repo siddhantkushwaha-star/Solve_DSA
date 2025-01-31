@@ -1,0 +1,50 @@
+GFG : Print array after it is right rotated K times
+
+Given an Array of size N and a value K, around which we need to right rotate the array. How do you quickly print the right rotated array?
+Examples : 
+
+Input: Array[] = {1, 3, 5, 7, 9}, K = 2.
+Output: 7 9 1 3 5
+Explanation:
+After 1st rotation – {9, 1, 3, 5, 7}After 2nd rotation – {7, 9, 1, 3, 5}
+
+
+
+Input: Array[] = {1, 2, 3, 4, 5}, K = 4.
+Output: 2 3 4 5 1      
+
+
+class Main {
+    public static void printArr(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Array is: " + arr[i]);
+        }
+    }
+
+    public static void rotateArr(int arr[], int k) {
+        int n = arr.length;
+        k = k % n; // Handle cases where k > n
+
+        reverse(arr, 0, n - 1); // Reverse the entire array
+        reverse(arr, 0, k - 1); // Reverse the first k elements
+        reverse(arr, k, n - 1); // Reverse the rest of the array
+
+        printArr(arr);
+    }
+
+    public static void reverse(int arr[], int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {1, 3, 5, 7, 9};
+        int k = 2;
+        rotateArr(arr, k);
+    }
+}
