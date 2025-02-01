@@ -1,0 +1,52 @@
+GFG : 13 
+
+First and Second Smallest 
+
+First and Second Smallests
+Difficulty: BasicAccuracy: 24.44%Submissions: 123K+Points: 1
+Given an array, arr of integers, your task is to return the smallest and second smallest element in the array. If the smallest and second smallest do not exist, return -1.
+
+Examples:
+
+Input: arr[] = [2, 4, 3, 5, 6]
+Output: 2 3 
+Explanation: 2 and 3 are respectively the smallest and second smallest elements in the array.
+Input: arr[] = [1, 1, 1]
+Output: -1
+Explanation: Only element is 1 which is smallest, so there is no second smallest element.
+Expected Time Complexity: O(n)
+Expected Auxillary Space: O(1)
+
+Constraints:
+1 <= arr.size <= 105
+1 <= arr[i] <= 105
+
+
+
+// User function Template for Java
+
+class Solution {
+    public int[] minAnd2ndMin(int arr[]) {
+        // code hereint count = 
+           // Initialize first and second to large values
+        int first = Integer.MAX_VALUE;
+        int second = Integer.MAX_VALUE;
+        
+        // Traverse the array
+        for (int num : arr) {
+            if (num < first) {
+                second = first;  // Update second to the previous first
+                first = num;     // Update first to the new smallest element
+            } else if (num < second && num != first) {
+                second = num;    // Update second if num is smaller than second and not equal to first
+            }
+        }
+        
+        // If second is still not updated, return -1
+        if (second == Integer.MAX_VALUE) {
+            return new int[]{-1};
+        }
+        
+        return new int[]{first, second}; // Return the smallest and second smallest
+    }
+}
