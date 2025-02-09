@@ -1,0 +1,38 @@
+GFG : Reverse a string
+
+
+Reverse a String in Java
+Last Updated : 03 Jan, 2025
+In Java, reversing a string means reordering the string characters from the last to the first position. There are multiple ways to reverse a string, each with its advantages.
+
+Example:
+
+The for loop is a simple, straightforward approach to reverse a string in Java that offers full control over the reversal process without relying on additional classes.
+
+
+
+// Java Program to Reverse a String
+// Using for loop
+import java.io.*;
+import java.util.Scanner;
+
+class GFG {
+    public static void main(String[] args) {
+      
+        String s = "Geeks"; 
+        String r = "";
+        char ch;
+
+        for (int i = 0; i < s.length(); i++) {
+              
+              // extracts each character
+            ch = s.charAt(i);
+          
+              // adds each character in
+            // front of the existing string
+            r = ch + r; 
+        }
+      
+        System.out.println(r);
+    }
+}
