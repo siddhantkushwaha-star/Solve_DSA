@@ -1,0 +1,51 @@
+GFG : Sort A String
+
+Given a string consisting of lowercase letters, arrange all its letters in ascending order. 
+
+Example 1:
+
+Input:
+S = "edcab"
+Output: "abcde"
+Explanation: characters are in ascending
+order in "abcde".
+Example 2:
+
+Input:
+S = "xzy"
+Output: "xyz"
+Explanation: characters are in ascending
+order in "xyz".
+
+
+Your Task:  
+You don't need to read input or print anything. Your task is to complete the function sort() which takes the string as inputs and returns the modified string.
+
+Expected Time Complexity: O(|S| * log |S|)
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1 ≤ |S| ≤ 105
+S contains only lowercase alphabets.
+
+
+Solution  :
+
+class Solution 
+{ 
+    String sort(String s) {
+     int freq[] = new int[26];
+     
+     for(char ch : s.toCharArray()){
+         freq[ch-'a']++;
+     }
+     
+     StringBuilder sb = new StringBuilder();
+     for(int i=0; i<26; i++){
+         while(freq[i]-- > 0){
+             sb.append((char)('a'+i));
+         }
+     }
+         return sb.toString(); 
+    }
+} 
