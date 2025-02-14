@@ -1,0 +1,57 @@
+GFG : Print all the duplicate vharacter in a String
+
+
+
+Given a string S, the task is to print all the duplicate characters with their occurrences in the given string.
+
+Example:
+
+Input: S = “geeksforgeeks”
+Output:
+e, count = 4
+g, count = 2
+k, count = 2
+s, count = 2
+
+Explanation: g occurs 2 times in the string, k occurs 2 times in the string, s occurs 2 times in the string while e occurs 4 times in the string rest of the characters have unique occurrences
+
+import java.util.*;
+
+public class Main {
+
+    public static void printDuplicates(String str)
+    {
+        int len = str.length();
+
+        // Sorting the string
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        String sortedStr = new String(chars);
+
+        // Loop through the sorted string to find duplicates
+        for (int i = 0; i < len; i++) {
+            int count = 1;
+
+            // Counting the occurrences of each character
+            while (i < len - 1
+                   && sortedStr.charAt(i)
+                          == sortedStr.charAt(i + 1)) {
+                count++;
+                i++;
+            }
+
+            // Printing the duplicate character and its
+            // count
+            if (count > 1) {
+                System.out.println(sortedStr.charAt(i)
+                                   + ", count = " + count);
+            }
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        String str = "test string";
+        printDuplicates(str);
+    }
+}
