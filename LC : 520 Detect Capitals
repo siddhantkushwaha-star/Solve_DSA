@@ -1,0 +1,55 @@
+Leet code : 520 : DETECT CAPITALS
+
+
+We define the usage of capitals in a word to be right when one of the following cases holds:
+
+All letters in this word are capitals, like "USA".
+All letters in this word are not capitals, like "leetcode".
+Only the first letter in this word is capital, like "Google".
+Given a string word, return true if the usage of capitals in it is right.
+
+ 
+
+Example 1:
+
+Input: word = "USA"
+Output: true
+Example 2:
+
+Input: word = "FlaG"
+Output: false
+ 
+
+Constraints:
+
+1 <= word.length <= 100
+word consists of lowercase and uppercase English letters.
+
+
+SOLUTION :
+
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        int n = word.length();
+        
+        // Case 1: All letters are uppercase
+        if (word.equals(word.toUpperCase())) return true;
+
+        // Case 2: All letters are lowercase
+        if (word.equals(word.toLowerCase())) return true;
+
+        // Case 3: Only the first letter is uppercase
+        if (Character.isUpperCase(word.charAt(0)) && word.substring(1).equals(word.substring(1).toLowerCase())) {
+            return true;
+        }
+
+        // Otherwise, it doesn't follow the rules
+        return false;
+    }
+}
+
+
+
+
+
+
