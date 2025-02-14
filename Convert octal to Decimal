@@ -1,0 +1,62 @@
+Code : convet Octal to Decimal
+
+Program for Octal to Decimal Conversion
+Last Updated : 15 Sep, 2023
+Given an octal number as input, we need to write a program to convert the given octal number into equivalent decimal number.
+
+Examples:
+
+Input : 67
+Output: 55
+Input : 512
+Output: 330
+Input : 123
+Output: 83
+
+The idea is to extract the digits of a given octal number starting from the rightmost digit and keep a variable dec_value. At the time of extracting digits from the octal number, multiply the digit with the proper base (Power of 8) and add it to the variable dec_value. In the end, the variable dec_value will store the required decimal number.
+
+For Example: 
+
+If the octal number is 67. 
+
+dec_value = 6*(8^1) + 7*(8^0) = 55
+
+The below diagram explains how to convert an octal number (123) to an equivalent decimal value:  
+
+
+// Java program to convert octal to decimal 
+import java.io.*; 
+  
+class GFG { 
+  
+    // Function to convert octal to decimal 
+    static int octalToDecimal(int n) 
+    { 
+        int num = n; 
+        int dec_value = 0; 
+  
+        // Initializing base value to 1, i.e 8^0 
+        int base = 1; 
+  
+        int temp = num; 
+        while (temp > 0) { 
+            // Extracting last digit 
+            int last_digit = temp % 10; 
+            temp = temp / 10; 
+  
+            // Multiplying last digit with appropriate 
+            // base value and adding it to dec_value 
+            dec_value += last_digit * base; 
+  
+            base = base * 8; 
+        } 
+        return dec_value; 
+    } 
+  
+    // driver program 
+    public static void main(String[] args) 
+    { 
+        int num = 67; 
+        System.out.println(octalToDecimal(num)); 
+    } 
+} 
