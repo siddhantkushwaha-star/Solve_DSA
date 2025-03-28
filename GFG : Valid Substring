@@ -1,0 +1,46 @@
+GFG : Valid Substring
+
+Given a string s consisting only of opening and closing parentheses ( and ), find the length of the longest valid (well-formed) parentheses substring.
+
+Note: The length of the smallest valid substring () is 2.
+
+Examples:
+
+Input: s = "(()("
+Output: 2
+Explanation: The longest valid substring is (). Its length is 2. 
+Input: s = "()(())("
+Output: 6
+Explanation: The longest valid substring is ()(()). Its length is 6.
+Input: s = "(()())"
+Output: 6
+Explanation: The longest valid substring is (()()). Its length is 6.
+Constraints:
+1 <= s.size() <= 105
+s[i] = { '(' , ')' }
+
+Solution : 
+
+class Solution {
+    static int findMaxLen(String S) {
+        // code here
+          Stack<Integer> stack = new Stack<>();
+        stack.push(-1); // Base index for valid substring
+        int maxLength = 0;
+
+        for (int i = 0; i < S.length(); i++) {
+            if (S.charAt(i) == '(') {
+                stack.push(i);
+            } else {
+                stack.pop(); // Remove last opening bracket index
+                if (stack.isEmpty()) {
+                    stack.push(i); // Mark new base index
+                } else {
+                    maxLength = Math.max(maxLength, i - stack.peek());
+                }
+            }
+        }
+
+        return maxLength;
+    }
+};
