@@ -1,0 +1,54 @@
+GFG  :  Maximum XOR of two numbers in an array
+
+
+Maximum XOR of two numbers in an array
+Difficulty: MediumAccuracy: 50.0%Submissions: 19K+Points: 4
+Given an array arr[] of non-negative integers of size n. Find the maximum possible XOR between two numbers present in the array.
+
+Examples:
+
+Input: arr[] = [25, 10, 2, 8, 5, 3]
+Output: 28
+Explanation: The maximum possible XOR is 5 ^ 25 = 28.
+Input: arr[] = [1, 2, 3, 4, 5, 6, 7]
+Output: 7
+Explanation : The maximum possible XOR is 1 ^ 6 = 7.
+Constraints:
+2 ≤ arr.size() ≤ 5*104
+1 ≤ arr[i] ≤ 106
+
+
+Solution : 
+
+class Solution {
+    public int maxXor(int[] arr) {
+        
+           int max = 0;
+        int mask = 0;
+
+        // Try each bit from high to low (31 to 0)
+        for (int i = 31; i >= 0; i--) {
+            // Update mask to include current bit
+            mask |= (1 << i);
+            Set<Integer> set = new HashSet<>();
+
+            // Store prefixes of all numbers with current mask
+            for (int num : arr) {
+                set.add(num & mask);
+            }
+
+            // Try to set current bit in max
+            int temp = max | (1 << i);
+
+            // Check if there exist two prefixes which give temp when XOR-ed
+            for (int prefix : set) {
+                if (set.contains(prefix ^ temp)) {
+                    max = temp; // Found two prefixes that can make this bit 1
+                    break;
+                }
+            }
+        }
+
+        return max;
+    }
+}
